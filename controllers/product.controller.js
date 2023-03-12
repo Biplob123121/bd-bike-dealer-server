@@ -38,6 +38,17 @@ const addProduct = async (req, res) => {
     }
 }
 
+const updateProduct = async (req, res) => {
+    try {
+        const seletedProduct = await product.findOne({ _id: req.params.id });
+        seletedProduct.quantity = req.body.quantity;
+        await seletedProduct.save();
+        res.status(200).json(seletedProduct);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
 const deleteProduct = async (req, res) => {
     try {
         const id = req.params.id;
@@ -48,4 +59,15 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-module.exports = { getAllProducts, getSingleProduct, addProduct, deleteProduct }
+
+const myProduct = async (req, res) => {
+    try {
+        const email = req.query.email;
+        const myItem = await product.find({ sEmail: email })
+        res.status(200).json(myItem)
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+}
+
+module.exports = { getAllProducts, getSingleProduct, addProduct, deleteProduct, myProduct, updateProduct }
