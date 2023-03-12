@@ -20,7 +20,6 @@ const productSchema = mongoose.Schema({
     },
     quantity: {
         type: String,
-        require: true
     },
     supplier: {
         type: String,
