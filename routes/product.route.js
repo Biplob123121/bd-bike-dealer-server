@@ -10,7 +10,7 @@ router.get('/:id', getSingleProduct)
 router.get('/myitem', myProduct)
 router.put('/:id', updateProduct)
 router.post('/', addProduct)
-router.post('/:id', deleteProduct)
+router.delete('/:id', deleteProduct)
 
 
 module.exports = router;
